@@ -1,0 +1,18 @@
+{
+  "name": "app",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview",
+    "test": "echo \"no test specified\""
+  },
+  "dependencies": {
+    "example-components": "*"
+  },
+  "devDependencies": {
+    "vite": "^5.0.8"
+  }
+}
