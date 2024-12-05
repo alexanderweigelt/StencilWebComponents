@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Projektvorschlag einreichen",
+    "dueDate": "2023-12-03"
+  },
+  {
+    "id": 2,
+    "title": "Meeting mit dem Team",
+    "dueDate": "2023-12-04"
+  },
+  {
+    "id": 3,
+    "title": "Präsentation vorbereiten",
+    "dueDate": "2023-12-05"
+  },
+  {
+    "id": 4,
+    "title": "Endabgabe des Berichts",
+    "dueDate": "2023-12-06"
+  }
+]

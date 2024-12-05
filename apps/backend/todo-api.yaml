@@ -1,0 +1,38 @@
+openapi: 3.1.0
+info:
+  title: ToDo API
+  version: 1.0.0
+  description: Eine einfache API, um ToDo-Elemente abzufragen.
+paths:
+  /todos:
+    get:
+      summary: Hole eine Liste aller ToDos
+      description: Gibt eine Liste von ToDo-Elementen zurück, sortiert nach Datum (aufsteigend).
+      responses:
+        '200':
+          description: Eine Liste der ToDos.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ToDo'
+components:
+  schemas:
+    ToDo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Die eindeutige ID des ToDo-Elements.
+        title:
+          type: string
+          description: Der Titel des ToDo-Elements.
+        dueDate:
+          type: string
+          format: date
+          description: Das Fälligkeitsdatum des ToDo-Elements.
+      required:
+        - id
+        - title
+        - dueDate
