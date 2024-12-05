@@ -9,7 +9,7 @@
     "test": "lerna run test"
   },
   "workspaces": [
-    "app",
+    "apps/*",
     "packages/*"
   ],
   "dependencies": {},
