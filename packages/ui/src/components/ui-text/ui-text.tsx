@@ -1,17 +1,17 @@
 import { Component, Host, h } from '@stencil/core';
 
 @Component({
-  tag: 'ui-main',
-  styleUrl: 'ui-main.css',
+  tag: 'ui-text',
+  styleUrl: 'ui-text.css',
   shadow: true,
 })
-export class UiMain {
+export class UiText {
   render() {
     return (
       <Host>
-        <main>
+        <p>
           <slot></slot>
-        </main>
+        </p>
       </Host>
     );
   }

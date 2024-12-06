@@ -1,20 +1,20 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { UiMain } from '../ui-main';
+import { UiText } from '../ui-text';
 
-describe('ui-main', () => {
+describe('ui-text', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [UiMain],
-      html: `<ui-main></ui-main>`,
+      components: [UiText],
+      html: `<ui-text></ui-text>`,
     });
     expect(page.root).toEqualHtml(`
-      <ui-main>
+      <ui-text>
         <mock:shadow-root>
-          <main>
+          <p>
             <slot></slot>
-          </main>
+          </p>
         </mock:shadow-root>
-      </ui-main>
+      </ui-text>
     `);
   });
 });

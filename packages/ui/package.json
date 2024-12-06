@@ -7,11 +7,11 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/ui/ui.esm.js",
+  "unpkg": "dist/todo-ui/todo-ui.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/ui/ui.esm.js",
-      "require": "./dist/ui/ui.cjs.js"
+      "import": "./dist/todo-ui/todo-ui.esm.js",
+      "require": "./dist/todo-ui/todo-ui.cjs.js"
     },
     "./ui-headline": {
       "import": "./dist/components/ui-headline.js",
@@ -21,9 +21,9 @@
       "import": "./dist/components/ui-button.js",
       "types": "./dist/components/ui-button.d.ts"
     },
-    "./ui-main": {
-      "import": "./dist/components/ui-main.js",
-      "types": "./dist/components/ui-main.d.ts"
+    "./ui-text": {
+      "import": "./dist/components/ui-text.js",
+      "types": "./dist/components/ui-text.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",

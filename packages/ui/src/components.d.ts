@@ -12,7 +12,7 @@ export namespace Components {
     }
     interface UiHeadline {
     }
-    interface UiMain {
+    interface UiText {
     }
 }
 declare global {
@@ -28,16 +28,16 @@ declare global {
         prototype: HTMLUiHeadlineElement;
         new (): HTMLUiHeadlineElement;
     };
-    interface HTMLUiMainElement extends Components.UiMain, HTMLStencilElement {
+    interface HTMLUiTextElement extends Components.UiText, HTMLStencilElement {
     }
-    var HTMLUiMainElement: {
-        prototype: HTMLUiMainElement;
-        new (): HTMLUiMainElement;
+    var HTMLUiTextElement: {
+        prototype: HTMLUiTextElement;
+        new (): HTMLUiTextElement;
     };
     interface HTMLElementTagNameMap {
         "ui-button": HTMLUiButtonElement;
         "ui-headline": HTMLUiHeadlineElement;
-        "ui-main": HTMLUiMainElement;
+        "ui-text": HTMLUiTextElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,12 +47,12 @@ declare namespace LocalJSX {
     }
     interface UiHeadline {
     }
-    interface UiMain {
+    interface UiText {
     }
     interface IntrinsicElements {
         "ui-button": UiButton;
         "ui-headline": UiHeadline;
-        "ui-main": UiMain;
+        "ui-text": UiText;
     }
 }
 export { LocalJSX as JSX };
@@ -61,7 +61,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ui-button": LocalJSX.UiButton & JSXBase.HTMLAttributes<HTMLUiButtonElement>;
             "ui-headline": LocalJSX.UiHeadline & JSXBase.HTMLAttributes<HTMLUiHeadlineElement>;
-            "ui-main": LocalJSX.UiMain & JSXBase.HTMLAttributes<HTMLUiMainElement>;
+            "ui-text": LocalJSX.UiText & JSXBase.HTMLAttributes<HTMLUiTextElement>;
         }
     }
 }
