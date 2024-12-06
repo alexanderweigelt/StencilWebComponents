@@ -1,0 +1,16 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  background: #cccccc;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+
+ui-button {
+  margin-right: 0.5rem;
+}
