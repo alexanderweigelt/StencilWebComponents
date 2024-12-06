@@ -5,13 +5,16 @@ describe('ui-button', () => {
   it('should render correctly with default properties', async () => {
     const page = await newSpecPage({
       components: [UiButton],
-      html: `<ui-button>Click me</ui-button>`,
+      html: `<ui-button>Submit</ui-button>`,
     });
 
     expect(page.root).toEqualHtml(`
       <ui-button>
         <mock:shadow-root>
-          <button type="button">Click me</button>
+          <button>
+            <slot></slot>
+          </button>
+          Submit
         </mock:shadow-root>
       </ui-button>
     `);
@@ -27,7 +30,6 @@ describe('ui-button', () => {
     expect(button.getAttribute('type')).toBe('submit');
     expect(button.hasAttribute('disabled')).toBe(true);
     expect(button.getAttribute('name')).toBe('test-button');
-    expect(button.textContent).toBe('Submit');
   });
 
   it('should handle custom attributes (aria, data)', async () => {

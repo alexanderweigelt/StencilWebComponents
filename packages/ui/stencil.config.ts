@@ -15,8 +15,5 @@ export const config: Config = {
     {
       type: 'docs-readme',
     }
-  ],
-  testing: {
-    browserHeadless: "new",
-  },
+  ]
 };

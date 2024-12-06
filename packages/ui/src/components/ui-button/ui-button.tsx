@@ -1,38 +1,26 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Element } from '@stencil/core';
 
 @Component({
   tag: 'ui-button',
   styleUrl: 'ui-button.css',
-  shadow: true, // Shadow DOM sorgt für Style-Isolation
+  shadow: true,
 })
 export class UiButton {
-  @Prop() type: string = 'button'; // Standard-Attribut des Buttons
-  @Prop() disabled: boolean = false; // Disabled-Attribut
+  @Element() el: HTMLButtonElement;
+
+  private getAttributes() {
+    const attributes = {};
+    Array.from(this.el.attributes).forEach(attr => {
+      attributes[attr.name] = attr.value;
+    });
+    return attributes;
+  }
 
   render() {
     return (
-      <button
-        type={this.type}
-        disabled={this.disabled}
-        {...this.getNativeProps()} // Alle nativen Button-Attribute
-      >
-        <slot></slot>
+      <button {...this.getAttributes()}>
+        <slot />
       </button>
     );
-  }
-
-  private getNativeProps() {
-    const nativeProps = {};
-    const attributes = Object.keys(this as any);
-    for (const key of attributes) {
-      if (key.startsWith('data-') || key.startsWith('aria-') || this.isNativeButtonProp(key)) {
-        nativeProps[key] = (this as any)[key];
-      }
-    }
-    return nativeProps;
-  }
-
-  private isNativeButtonProp(key: string) {
-    return ['autofocus', 'form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget', 'name', 'value'].includes(key);
   }
 }

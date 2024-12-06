@@ -7,8 +7,6 @@ describe('ui-button', () => {
 
     const button = await page.find('ui-button >>> button');
     expect(button).not.toBeNull();
-    expect(button.getAttribute('type')).toBe('button');
-    expect(button).not.toHaveAttribute('disabled');
     expect(button.textContent).toBe('Click me');
   });
 
@@ -17,8 +15,8 @@ describe('ui-button', () => {
     await page.setContent('<ui-button type="submit" aria-label="submit-button" disabled>Submit</ui-button>');
 
     const button = await page.find('ui-button >>> button');
-    expect(button.getAttribute('type')).toBe('submit');
     expect(button).toHaveAttribute('disabled');
+    expect(button.getAttribute('type')).toBe('submit');
     expect(button.getAttribute('aria-label')).toBe('submit-button');
   });
 

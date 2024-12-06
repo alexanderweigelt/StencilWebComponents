@@ -7,8 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface UiButton {
-        "disabled": boolean;
-        "type": string;
     }
     interface UiHeadline {
     }
@@ -42,8 +40,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface UiButton {
-        "disabled"?: boolean;
-        "type"?: string;
     }
     interface UiHeadline {
     }
