@@ -3,8 +3,7 @@
   "description": "Building Web Components with Stencil.js",
   "private": true,
   "scripts": {
-    "dev": "BUILD_ENV=development lerna run dev --parallel",
-    "build": "BUILD_ENV=production lerna run build --stream",
+    "build": "lerna run build --stream",
     "start": "lerna run start",
     "test": "lerna run test"
   },
