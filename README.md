@@ -51,7 +51,7 @@ Disadvantages of StencilJS
 ├── package-lock.json  # Root dependency lock file
 ├── package.json       # Root package configuration
 └── packages
-└── ui             # Shared UI library (Stencil.js)
+    └── ui             # Shared UI library (Stencil.js)
 ├── package.json
 ├── src
 ├── stencil.config.ts
