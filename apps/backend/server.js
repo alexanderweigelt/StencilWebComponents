@@ -1,12 +1,18 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
 
 // Middleware, um JSON-Daten bereitzustellen
 app.use(express.json());
+
+// Um Cross-Origin-Anfragen zu ermöglichen, muss der CORS-Header gesetzt werden.
+app.use(cors({
+  origin: 'http://localhost:3333', // Erlaubt nur Anfragen von diesem Origin
+}));
 
 // GET-Endpoint: /todos
 app.get('/todos', (req, res) => {

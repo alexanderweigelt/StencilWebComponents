@@ -1,4 +1,6 @@
-import { Component, h, Host, State } from '@stencil/core';
+import { Component, h, Host, State, Fragment } from '@stencil/core';
+import { getTodos } from '../../generated/client';
+import type { ToDo } from '../../generated/client';
 
 @Component({
   tag: 'todo-list',
@@ -6,26 +8,24 @@ import { Component, h, Host, State } from '@stencil/core';
   shadow: true,
 })
 export class TodoList {
-  @State() todos: any[] = [];
+  @State() todos: ToDo[] = [];
   @State() errorMessage: string | null = null;
   @State() loading: boolean = false;
+  @State() initial: boolean = true;
 
   async fetchTodos() {
     this.loading = true;
     this.errorMessage = null;
 
     try {
-      const response = await new Promise<{ data: any[] }>((resolve, reject) => {
-        setTimeout(() => {
-          Math.random() > 0.5
-            ? resolve({ data: [{ id: 1, title: 'Sample ToDo' }] })
-            : reject(new Error('Fehler beim Laden der ToDos.'));
-        }, 1000);
-      });
-
-      this.todos = response.data;
+      const response = await getTodos({baseUrl: 'http://localhost:3000'});
+      if (Array.isArray(response.data)) {
+        this.todos = response.data;
+      } else {
+        throw new Error('Unexpected API response format');
+      }
     } catch (error) {
-      this.errorMessage = error.message || 'Unbekannter Fehler';
+      this.errorMessage = error instanceof Error ? error.message : 'An error occurred';
     } finally {
       this.loading = false;
     }
@@ -33,15 +33,15 @@ export class TodoList {
 
   renderTodoList() {
     if (this.todos.length === 0) {
-      return <p>Keine ToDos gefunden.</p>;
+      return <p>No ToDos found.</p>;
     }
 
     return (
       <ul>
         {this.todos.map((todo) => (
           <li key={todo.id}>
-            <ui-button onClick={() => console.log(`Bearbeiten: ${todo.id}`)}>
-              ToDo bearbeiten
+            <ui-button onClick={() => console.log(`Done: ${todo.id}`)}>
+              done
             </ui-button>
             <ui-text>{todo.title}</ui-text>
           </li>
@@ -53,13 +53,16 @@ export class TodoList {
   render() {
     return (
       <Host>
-        <ui-button name={'loading'} type={'button'} onClick={() => this.fetchTodos()} disabled={this.loading}>
-          {this.loading ? 'Laden...' : 'ToDo jetzt ansehen'}
-        </ui-button>
-
-        {this.loading && <p>ToDos werden geladen...</p>}
-        {!this.loading && this.errorMessage && <p class="error">{this.errorMessage}</p>}
-        {!this.loading && !this.errorMessage && this.renderTodoList()}
+        {this.initial
+          ? <ui-button name={'loading'} type={'button'} onClick={() => {this.fetchTodos(); this.initial = false}} disabled={this.loading}>
+            {this.loading ? 'Loading...' : 'Start the Application'}
+          </ui-button>
+          : <Fragment>
+            {this.loading && <p>ToDos are loaded...</p>}
+            {!this.loading && this.errorMessage && <p class="error">{this.errorMessage}</p>}
+            {!this.loading && !this.errorMessage && this.renderTodoList()}
+          </Fragment>
+        }
       </Host>
     );
   }
