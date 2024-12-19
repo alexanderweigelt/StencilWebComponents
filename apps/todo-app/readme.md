@@ -20,7 +20,7 @@ This is the frontend application for the ToDo project, built using **Stencil.js*
 ├── package.json            # Frontend dependencies and scripts
 ├── src                     # Source code for the app
 │   ├── components          # Stencil components for the app
-│   │   ├── app-root        # Root component
+│   │   ├── todo-app        # Root component
 │   │   └── todo-list       # Component to display the list of ToDos
 │   ├── generated           # Auto-generated API client (via OpenAPI)
 │   ├── global              # Global styles and configuration
@@ -83,13 +83,13 @@ async fetchTodos() {
 
 ## Components
 
-### `<app-root>`
+### `<todo-app>`
 
 The root component of the application, providing the base layout and routing.
 
 **Usage:**
 ```html
-<app-root></app-root>
+<todo-app></todo-app>
 ```
 
 ### `<todo-list>`

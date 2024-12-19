@@ -1,8 +1,11 @@
 openapi: 3.1.0
 info:
   title: ToDo API
-  version: 1.0.0
-  description: Eine einfache API, um ToDo-Elemente abzufragen.
+  version: 1.1.0
+  description: Eine erweiterte API, um ToDo-Elemente zu verwalten.
+servers:
+  - url: http://localhost:3000
+    description: Lokaler Entwicklungs-Server
 paths:
   /todos:
     get:
@@ -17,6 +20,82 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ToDo'
+    post:
+      summary: Erstelle ein neues ToDo
+      description: Fügt ein neues ToDo-Element zur Liste hinzu.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewToDo'
+      responses:
+        '201':
+          description: Das erstellte ToDo-Element.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToDo'
+  /todos/{id}:
+    get:
+      summary: Hole ein spezifisches ToDo
+      description: Gibt ein einzelnes ToDo-Element anhand seiner ID zurück.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Die ID des ToDo-Elements.
+      responses:
+        '200':
+          description: Das angeforderte ToDo-Element.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToDo'
+        '404':
+          description: ToDo-Element nicht gefunden.
+    put:
+      summary: Aktualisiere ein ToDo
+      description: Aktualisiert ein bestehendes ToDo-Element anhand seiner ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Die ID des ToDo-Elements.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewToDo'
+      responses:
+        '200':
+          description: Das aktualisierte ToDo-Element.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToDo'
+        '404':
+          description: ToDo-Element nicht gefunden.
+    delete:
+      summary: Lösche ein ToDo
+      description: Entfernt ein ToDo-Element anhand seiner ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Die ID des ToDo-Elements.
+      responses:
+        '204':
+          description: ToDo-Element erfolgreich gelöscht.
+        '404':
+          description: ToDo-Element nicht gefunden.
 components:
   schemas:
     ToDo:
@@ -25,14 +104,35 @@ components:
         id:
           type: integer
           description: Die eindeutige ID des ToDo-Elements.
-        title:
+        text:
           type: string
           description: Der Titel des ToDo-Elements.
+        completed:
+          type: boolean
+          description: Markiert das ToDo-Element als erledigt.
         dueDate:
           type: string
           format: date
           description: Das Fälligkeitsdatum des ToDo-Elements.
       required:
         - id
-        - title
+        - text
+        - completed
+        - dueDate
+    NewToDo:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Der Titel des ToDo-Elements.
+        completed:
+          type: boolean
+          description: Markiert das ToDo-Element als erledigt.
+        dueDate:
+          type: string
+          format: date
+          description: Das Fälligkeitsdatum des ToDo-Elements.
+      required:
+        - text
+        - completed
         - dueDate

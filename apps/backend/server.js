@@ -1,35 +1,92 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
 const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
 
-// Middleware, um JSON-Daten bereitzustellen
 app.use(express.json());
 
-// Um Cross-Origin-Anfragen zu ermöglichen, muss der CORS-Header gesetzt werden.
-app.use(cors({
-  origin: 'http://localhost:3333', // Erlaubt nur Anfragen von diesem Origin
-}));
+app.use(
+  cors({
+    origin: 'http://localhost:3333', // Allows only requests from this Origin
+  }),
+);
 
-// GET-Endpoint: /todos
+// Mock-Daten
+let todos = [
+  { id: 1, text: 'Erstes ToDo', completed: false, dueDate: '2024-12-31' },
+  { id: 2, text: 'Zweites ToDo', completed: true, dueDate: '2024-12-25' },
+];
+
+// GET-Endpoint: /todos - Get all ToDos
 app.get('/todos', (req, res) => {
-  // Lade die Mock-Daten aus der Datei
-  const filePath = path.join(__dirname, 'todos.json');
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error('Error when loading ToDos:', err);
-      res.status(500).json({ error: 'Error when loading ToDos.' });
-    } else {
-      const todos = JSON.parse(data);
-      res.status(200).json(todos);
-    }
-  });
+  res.status(200).json(todos);
 });
 
-// Starte den Server
+// POST-Endpoint: /todos - Create a new ToDo
+app.post('/todos', (req, res) => {
+  const { text, completed, dueDate } = req.body;
+
+  if (!text || completed === undefined || !dueDate) {
+    return res.status(400).json({ error: 'Ungültige Daten für das ToDo.' });
+  }
+
+  const newTodo = {
+    id: todos.length > 0 ? todos[todos.length - 1].id + 1 : 1,
+    text,
+    completed,
+    dueDate,
+  };
+
+  todos.push(newTodo);
+  res.status(201).json(newTodo);
+});
+
+// GET-Endpoint: /todos/:id - Get a specific ToDo
+app.get('/todos/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const todo = todos.find((t) => t.id === id);
+
+  if (!todo) {
+    return res.status(404).json({ error: 'ToDo nicht gefunden.' });
+  }
+
+  res.status(200).json(todo);
+});
+
+// PUT-Endpoint: /todos/:id - Update a ToDo
+app.put('/todos/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const { text, completed, dueDate } = req.body;
+
+  const todoIndex = todos.findIndex((t) => t.id === id);
+
+  if (todoIndex === -1) {
+    return res.status(404).json({ error: 'ToDo nicht gefunden.' });
+  }
+
+  if (!text || completed === undefined || !dueDate) {
+    return res.status(400).json({ error: 'Ungültige Daten für das ToDo.' });
+  }
+
+  todos[todoIndex] = { id, text, completed, dueDate };
+  res.status(200).json(todos[todoIndex]);
+});
+
+// DELETE-Endpoint: /todos/:id - Delete a ToDo
+app.delete('/todos/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const todoIndex = todos.findIndex((t) => t.id === id);
+
+  if (todoIndex === -1) {
+    return res.status(404).json({ error: 'ToDo nicht gefunden.' });
+  }
+
+  todos.splice(todoIndex, 1);
+  res.status(204).send();
+});
+
+// Starts the server
 app.listen(PORT, () => {
-  console.log(`API Server is available now: http://localhost:${PORT}`);
+  console.log(`API Server läuft auf: http://localhost:${PORT}`);
 });

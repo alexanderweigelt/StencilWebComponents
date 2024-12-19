@@ -6,45 +6,32 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface AppRoot {
-    }
-    interface TodoList {
+    interface TodoApp {
     }
 }
 declare global {
-    interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {
+    interface HTMLTodoAppElement extends Components.TodoApp, HTMLStencilElement {
     }
-    var HTMLAppRootElement: {
-        prototype: HTMLAppRootElement;
-        new (): HTMLAppRootElement;
-    };
-    interface HTMLTodoListElement extends Components.TodoList, HTMLStencilElement {
-    }
-    var HTMLTodoListElement: {
-        prototype: HTMLTodoListElement;
-        new (): HTMLTodoListElement;
+    var HTMLTodoAppElement: {
+        prototype: HTMLTodoAppElement;
+        new (): HTMLTodoAppElement;
     };
     interface HTMLElementTagNameMap {
-        "app-root": HTMLAppRootElement;
-        "todo-list": HTMLTodoListElement;
+        "todo-app": HTMLTodoAppElement;
     }
 }
 declare namespace LocalJSX {
-    interface AppRoot {
-    }
-    interface TodoList {
+    interface TodoApp {
     }
     interface IntrinsicElements {
-        "app-root": AppRoot;
-        "todo-list": TodoList;
+        "todo-app": TodoApp;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
-            "todo-list": LocalJSX.TodoList & JSXBase.HTMLAttributes<HTMLTodoListElement>;
+            "todo-app": LocalJSX.TodoApp & JSXBase.HTMLAttributes<HTMLTodoAppElement>;
         }
     }
 }
