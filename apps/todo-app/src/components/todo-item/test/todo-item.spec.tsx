@@ -3,7 +3,7 @@ import { TodoItem } from '../todo-item';
 import { h } from '@stencil/core';
 import { ToDo } from '../../../generated/client';
 
-describe('todo-item', () => {
+describe('ToDoItem Component', () => {
   const mockTodo: ToDo = {
     id: 1,
     dueDate: new Date().toLocaleString('de-DE'),
@@ -18,7 +18,7 @@ describe('todo-item', () => {
     });
 
     expect(page.root).toEqualHtml(`
-      <li>
+      <li class="todo-item">
         <ui-button>open</ui-button>
         <ui-text>Test To-Do</ui-text>
       </li>
@@ -37,7 +37,7 @@ describe('todo-item', () => {
     });
 
     expect(page.root).toEqualHtml(`
-      <li class="completed">
+      <li class="todo-item completed">
         <ui-button>complete</ui-button>
         <ui-text>Test To-Do</ui-text>
       </li>

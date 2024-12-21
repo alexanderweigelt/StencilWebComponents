@@ -44,7 +44,7 @@ export class TodoApp {
    * @param id
    */
   toggleTodo = (id: number) => {
-    // should fetch the ToDo API to set the ToDo as completed
+    // should fetch the ToDo API to set item as completed
     this.todos = this.todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo,
     );

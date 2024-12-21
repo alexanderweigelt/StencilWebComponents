@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ToDoList Component matches the snapshot with an empty todos array 1`] = `<ul></ul>`;
+exports[`ToDoList Component matches the snapshot with an empty todos array 1`] = `<ul class="todo-list"></ul>`;
 
 exports[`ToDoList Component matches the snapshot with todos 1`] = `
-<ul>
-  <li>
+<ul class="todo-list">
+  <li class="todo-item">
     <ui-button>
       open
     </ui-button>
@@ -12,7 +12,7 @@ exports[`ToDoList Component matches the snapshot with todos 1`] = `
       Learn Stencil
     </ui-text>
   </li>
-  <li class="completed">
+  <li class="completed todo-item">
     <ui-button>
       complete
     </ui-button>

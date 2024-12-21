@@ -13,15 +13,17 @@ export const AddTodo: FunctionalComponent<AddTodoProps> = ({ handleInputChange, 
   }
 
   return (
-    <form class={'add-todo'} onSubmit={handleSubmit}>
-      <input
-        id="new-todo"
-        placeholder="Add a todo"
-        value={newTodoText}
-        onInput={handleInputChange}
-      />
-      <button>Add Todo</button>
-    </form>
+    <div class={'add-todo'}>
+      <form onSubmit={handleSubmit}>
+        <input
+          id="new-todo"
+          placeholder="Add a todo"
+          value={newTodoText}
+          onInput={handleInputChange}
+        />
+        <button>Add Todo</button>
+      </form>
+    </div>
   );
 };
 
