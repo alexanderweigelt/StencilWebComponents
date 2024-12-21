@@ -8,7 +8,7 @@ interface TodoItemProps {
 
 export const TodoItem: FunctionalComponent<TodoItemProps> = ({ todo, onToggle }) => {
   return (
-    <li class={todo.completed ? 'completed' : ''}>
+    <li class={`todo-item ${todo.completed ? 'completed' : ''}`}>
       <ui-button onClick={onToggle}>
         {todo.completed ? 'complete' : 'open'}
       </ui-button>

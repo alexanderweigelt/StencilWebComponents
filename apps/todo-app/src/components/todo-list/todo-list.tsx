@@ -1,6 +1,6 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { TodoItem } from '../todo-item/todo-item';
-import { ToDo } from '../../generated/client'
+import { ToDo } from '../../generated/client';
 
 interface TodoListProps {
   todos: ToDo[];
@@ -9,7 +9,7 @@ interface TodoListProps {
 
 export const TodoList: FunctionalComponent<TodoListProps> = ({ todos, toggleTodo }) => {
   return (
-    <ul>
+    <ul class={'todo-list'}>
       {todos.map(todo => (
         <TodoItem todo={todo} onToggle={() => toggleTodo(todo.id)}></TodoItem>
       ))}

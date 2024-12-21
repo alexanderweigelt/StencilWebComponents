@@ -3,9 +3,9 @@
   "description": "Building Web Components with Stencil.js",
   "private": true,
   "scripts": {
-    "build": "lerna run build --stream",
-    "start": "lerna run start",
-    "test": "lerna run test"
+    "build": "lerna run build",
+    "start": "lerna run start --stream --parallel",
+    "test": "lerna run test --stream"
   },
   "workspaces": [
     "apps/*",

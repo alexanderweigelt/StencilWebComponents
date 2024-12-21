@@ -8,12 +8,12 @@ interface AddTodoProps {
 
 export const AddTodo: FunctionalComponent<AddTodoProps> = ({ handleInputChange, addTodo, newTodoText }) => {
   function handleSubmit(event: Event) {
-    event.preventDefault()
-    addTodo()
+    event.preventDefault();
+    addTodo();
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form class={'add-todo'} onSubmit={handleSubmit}>
       <input
         id="new-todo"
         placeholder="Add a todo"
@@ -22,7 +22,6 @@ export const AddTodo: FunctionalComponent<AddTodoProps> = ({ handleInputChange, 
       />
       <button>Add Todo</button>
     </form>
-
   );
 };
 

@@ -1,4 +1,4 @@
-import { Component, Fragment, h, State, JSX } from '@stencil/core';
+import { Component, Fragment, h, State, JSX, Host } from '@stencil/core';
 import { getTodos, postTodos, ToDo } from '../../generated/client';
 import { TodoList } from '../todo-list/todo-list';
 import { AddTodo } from '../add-todo/add-todo';
@@ -87,19 +87,17 @@ export class TodoApp {
 
   render() {
     return (
-      <div>
+      <Host>
         <header>
           <ui-headline>ToDo App</ui-headline>
         </header>
 
         <main>
-          <Fragment>
-            {this.loading && <p>ToDos list are loaded...</p>}
-            {!this.loading && this.errorMessage && <p class="error">{this.errorMessage}</p>}
-            {!this.loading && !this.errorMessage && this.renderToDoApp()}
-          </Fragment>
+          {this.loading && <p>ToDos list are loaded...</p>}
+          {!this.loading && this.errorMessage && <p class="error">{this.errorMessage}</p>}
+          {!this.loading && !this.errorMessage && this.renderToDoApp()}
         </main>
-      </div>
+      </Host>
     );
   }
 }
