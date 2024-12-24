@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoApp Web-Component renders the app correctly 1`] = `
+<todo-app>
+  <template shadowrootmode="open">
+    <header>
+      <ui-headline>
+        ToDo App
+      </ui-headline>
+    </header>
+    <main class="todo-app">
+      <ul class="todo-list">
+        <li class="todo-item">
+          <ui-button>
+            open
+          </ui-button>
+          <ui-text>
+            Learn Stencil
+          </ui-text>
+        </li>
+        <li class="completed todo-item">
+          <ui-button>
+            complete
+          </ui-button>
+          <ui-text>
+            Write Tests
+          </ui-text>
+        </li>
+      </ul>
+      <div class="add-todo">
+        <form>
+          <input id="new-todo" placeholder="Add a todo" value="">
+          <button>
+            Add Todo
+          </button>
+        </form>
+      </div>
+    </main>
+  </template>
+</todo-app>
+`;

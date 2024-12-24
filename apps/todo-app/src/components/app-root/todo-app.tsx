@@ -14,8 +14,11 @@ export class TodoApp {
   @State() todos: ToDo[] = [];
   @State() newTodoText: string = '';
 
-  componentWillLoad() {
-    this.fetchTodos();
+  /**
+   * Lifecycle method that called once just after the component is first connected to the DOM
+   */
+  async componentWillLoad() {
+    this.fetchTodos()
   }
 
   /**
@@ -33,8 +36,6 @@ export class TodoApp {
       this.newTodoText = '';
     } catch (error) {
       this.errorMessage = error instanceof Error ? error.message : 'An error occurred';
-    } finally {
-      this.loading = false;
     }
   };
 
@@ -92,9 +93,9 @@ export class TodoApp {
           <ui-headline>ToDo App</ui-headline>
         </header>
 
-        <main>
-          {this.loading && <p>ToDos list are loaded...</p>}
-          {!this.loading && this.errorMessage && <p class="error">{this.errorMessage}</p>}
+        <main class={'todo-app'}>
+          {this.loading && !this.errorMessage && <p class={'loading'}>ToDos list are loaded...</p>}
+          {this.errorMessage && <p class="error">{this.errorMessage}</p>}
           {!this.loading && !this.errorMessage && this.renderToDoApp()}
         </main>
       </Host>
